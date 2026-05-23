@@ -22,8 +22,8 @@ app.use(helmet({
   crossOriginResourcePolicy: false, // Allows displaying images from Cloudinary directly
 }));
 
-// CORS configuration - only allow CLIENT_URL
-const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+// CORS configuration - only allow CLIENT_URL (automatically strips trailing slash)
+const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/$/, '');
 app.use(
   cors({
     origin: clientUrl,
